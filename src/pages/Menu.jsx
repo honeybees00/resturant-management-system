@@ -8,13 +8,13 @@ export const Menu = () => {
     async function fetchMenu() {
       const {data,error}= await
 
-
-      
-    }   
-
-    },[]);
-
     
+      
+    }  
+    
+    },[]);
+  
+  
 
   return (
     <div>Menu</div>
