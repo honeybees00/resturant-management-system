@@ -1,32 +1,39 @@
-
+import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
+import { Menu } from './pages/Menu'
 import './App.css'
 import { OrderPage } from './pages/OrderPage'
+import {menu} from './pages/Menu'
 
     function App(){
         return (
-            <BrowserRouter>
-<nav>
-    <link to="/">Home</link>
+            <>
+            <nav>
+                <link to="/">Home</link>
     <link to="/Menu">Menu</link>
     <link to="/order"className='btn btn-info'>Order Now</link>
-</nav>
+    </nav>
+    
+
+            <HashRouter>
+
+    
 <Routes>
-    <Route path='/'element={<Home/>}/>
-    <Route path='/'element={<Menu/>}/>
-    <Route path="/order"element={<OrderPage/>}/>
+    <Route path='/home'element={<Home/>}/>
+    <Route path='/menu'element={<Menu/>}/>
+    <Route path='/order'element={<OrderPage/>}/>
 </Routes>
 
 
-
-            </BrowserRouter>
+</HashRouter>
+            
+           
+     </>       
             
             
-            
-            
-            
-        )
+    
         
-        
+        )   
     }
  export default App
 
