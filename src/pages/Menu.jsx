@@ -14,7 +14,7 @@ export const Menu = () => {
     async function fetchMenu() {
       const {data,error}= await supabase .from('menuItems').select();
       if (error){
-        console.error("Error fetching menu."error);
+        console.error("Error fetching menu".error);
       } else{
         setMenuItems(data);
       }
@@ -23,8 +23,9 @@ export const Menu = () => {
     
       }
       
-      fetchMenu();
-    },[];
+      fetchMenu()
+    )
+  }[];
     
     //make sure to filter menuItems for category//  
      const breakfastItems=menuItems.filter(items=> items.category==='breakfast');
@@ -56,7 +57,7 @@ export const Menu = () => {
    
 </div>
 
-))}
+
  
 
   {/*Lunch*/}
@@ -109,6 +110,6 @@ export const Menu = () => {
           </div>
       </div>
 
-       
+  )
+</div>
   ))
-}

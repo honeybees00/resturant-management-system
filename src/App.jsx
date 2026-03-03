@@ -4,6 +4,7 @@ import { Menu } from './pages/Menu'
 import './App.css'
 import { OrderPage } from './pages/OrderPage'
 import {menu} from './pages/Menu'
+import {home} from './pages/Home'
 
     function App(){
         return (
@@ -36,5 +37,6 @@ import {menu} from './pages/Menu'
         )   
     }
  export default App
+
 
  
