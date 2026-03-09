@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 export const Menu = () => {
-  //set stat for menu_items here//
+  //set state for menu_items here//
     const[menuItems,setMenuItems]= useState([]);
 
 
@@ -21,11 +21,11 @@ export const Menu = () => {
       }
   
     
-      }
+      
       
       fetchMenu()
-    )
-  }[];
+    
+  },[])
     
     //make sure to filter menuItems for category//  
      const breakfastItems=menuItems.filter(items=> items.category==='breakfast');
@@ -39,15 +39,13 @@ export const Menu = () => {
   
 
   return (
-    <div>
+    <>
+    
       {/*Breakfast*/}
       {breakfastItems.map((item)=>(
-        <div key={item.id}>
-          <h3>{item.name}</h3>
-          <p>${item.price}</p>
-        <img src={item.imgage_url} alt={item.name}/>//
-       <div key={item.id} class="card" style={{"width: 18rem"}}>
-  <img src={item.imgage_url} className="card-img-top" alt={item.name}/>
+        
+       <div key={item.id} class="card" style={{width: "18rem"}}>
+  <img src={item.image_url} className="card-img-top" alt={item.name}/>
   <div className="card-body">
     <h3 card-title>{item.name}</h3>
     <h5 className="card-title">Card title</h5>
@@ -56,31 +54,33 @@ export const Menu = () => {
   </div>
    
 </div>
+      ))}
+  
 
 
  
 
   {/*Lunch*/}
+  <h2>Lunch</h2>
   {lunchItems.map((item)=>(
   <div key={item.id}>
-  <h2>Lunch</h2>
-  {lunchItem.map((item)=>(
-     <div key={item.id}>
-          <h3>{item.name}</h3>
+    <h3>{item.name}</h3>
           <p>${item.price}</p>
           <img src={item.imgage_url} alt={item.name}/>
           <h3 className="card-title">{item.name}</h3>
           <p className="card-text">${item.price}</p>
         </div>
+  ))}
   
-  )
-  )
-  }
+  
+  
+  
+  
   
 
   {/*Dinner*/}
   <h2>Dinner</h2>
-  {dinnerItem.map((item)=>(
+  {dinnerItems.map((item)=>(
      <div key={item.id}>
           <h3>{item.name}</h3>
           <p>${item.price}</p>
@@ -97,7 +97,7 @@ export const Menu = () => {
   
   {/*Drinks*/}
   <h2>Drinks</h2>
-  {drinksItem.map((item)=>( 
+  {drinksItems.map((item)=>( 
     <div key={item.id}>
           <h3>{item.name}</h3>
           <p>${item.price}</p>
@@ -109,7 +109,8 @@ export const Menu = () => {
             
           </div>
       </div>
+  ))}
 
-  )
-</div>
-  ))
+  </>
+
+  )}
