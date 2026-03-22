@@ -1,22 +1,75 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { supabase } from "./supabaseClient";
 
-const Navbar = () => {
+function App() {
+	const [items, setItems] = useState([]);
+	const [loading, setLoading] = useState(true);
+
+	// ✅ Fetch data from Supabase
+	useEffect(() => {
+		const fetchItems = async () => {
+			const { data, error } = await supabase
+				.from("menu") // make sure this matches your table name
+				.select("*");
+
+			if (error) {
+				console.log("Error:", error);
+			} else {
+				setItems(data);
+			}
+			setLoading(false);
+		};
+
+		fetchItems();
+	}, []);
+
+
+	const appetizers = items.filter((item) => item.category === "appetizer");
+
+	const drinks = items.filter((item) => item.category === "drink");
+
 	return (
-		<nav className="flex justify-between p-4 bg-gray-800 text-white">
-			<h1 className="text-lg font-bold">Restaurant App</h1>
+		<div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
+			<h1 className="text-3xl font-bold mb-6">Restaurant Menu</h1>
 
-			<div className="space-x-4">
-				<Link to="/" className="hover:text-gray-300">
-					Home
-				</Link>
+			{/* Loading State */}
+			{loading ? (
+				<p>Loading...</p>
+			) : (
+				<div className="w-full max-w-2xl flex flex-col gap-6">
+					{/* Appetizers */}
+					<div className="flex flex-col gap-3">
+						<h2 className="text-xl font-semibold">Appetizers</h2>
 
-				<Link to="/order" className="hover:text-gray-300">
-					Order Now
-				</Link>
-			</div>
-		</nav>
+						{appetizers.map((item) => (
+							<div
+								key={item.id}
+								className="flex justify-between items-center bg-white p-4 rounded-lg shadow"
+							>
+								<p className="font-medium">{item.name}</p>
+								<p className="text-gray-600">${item.price}</p>
+							</div>
+						))}
+					</div>
+
+					{/* Drinks */}
+					<div className="flex flex-col gap-3">
+						<h2 className="text-xl font-semibold">Drinks</h2>
+
+						{drinks.map((item) => (
+							<div
+								key={item.id}
+								className="flex justify-between items-center bg-white p-4 rounded-lg shadow"
+							>
+								<p className="font-medium">{item.name}</p>
+								<p className="text-gray-600">${item.price}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			)}
+		</div>
 	);
-};
+}
 
-export default Navbar;
+export default App;

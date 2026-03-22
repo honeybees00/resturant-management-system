@@ -100,7 +100,7 @@ Format Rule: Only respond in plain text. Do not use HTML or Markdown.
 					className="form-control"
 					value={question}
 					onChange={onChangeQuestion}
-					placeholder="Ask your question"
+					messages="Ask your question"
 				/>
 			</div>
 
