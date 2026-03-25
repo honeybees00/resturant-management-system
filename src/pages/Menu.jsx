@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import  supabase  from '/supabase/supabase-js';
+import supabase from '../services/supabaseClient';
 import { BrowserRouter } from 'react-router-dom';
 
 
@@ -12,7 +12,7 @@ export const Menu = () => {
     //This is fetching menu_items from table in supabase//
     useEffect(()=>{
     async function fetchMenu() {
-      const {data,error}= await supabase .from('menuItems').select();
+      const {data,error}= await supabase.from('menuItems').select();
       if (error){
         console.error("Error fetching menu".error);
       } else{
